@@ -1,0 +1,107 @@
+﻿@model WebApplication1.Models.Game
+
+
+<body>
+  
+         <div class="row my-game-rows">
+                <div class="col-xs-12 col-sm-3 h3 my-vertical-center">
+                    <p>Dealer</p>
+                </div>
+           
+    <div class="col-xs-12 col-sm-5 my-dealer-cards" id="my-dealer-cards">
+                    <div class="my-cards-container">
+               
+
+        @foreach (var dealer in ViewBag.Dealer)
+        {
+            <tr>
+                <td>@dealer</td>
+            </tr>
+        }
+        </div>
+        </div>
+        <br />
+        <h4>Dealer Score = @ViewBag.SumDealer </h4>
+        <br />
+        </div>
+      @*  @TempData.Peek("Stay")*@
+       @* @Html.Raw(@TempData.Peek("Stay").ToString());*@
+
+@*-----------------------------------------------------Dealer Row--------------------------------------------------------------------------------------------------------*@
+         <div class="row my-game-rows">
+                <div class="col-xs-12 col-sm-3 h3 my-vertical-center">
+                    <p>Player</p>
+                </div>
+           
+    <div class="col-xs-12 col-sm-5 my-dealer-cards" id="my-dealer-cards">
+                    <div class="my-cards-container">
+        
+        @foreach (var player in ViewBag.Player)
+        {
+                <tr>
+                <td>@player</td>
+                </tr>
+        }
+       </div>
+        </div>
+        <br />
+         <h4>Player Score = @ViewBag.SumPlayer </h4>
+         
+        <br />
+        </div>
+
+               @* @TempData.Peek("Hit")*@
+
+  @*---------------------------------------------------------Player Row---------------------------------------------------------------------------------------------------  *@  
+
+
+
+
+            <div class="row my-game-rows">
+
+                <div class="col-xs-12 col-sm-3 h3 my-vertical-center">
+
+       @using (Html.BeginForm("HitButton", "Home", FormMethod.Post))
+        {
+                                   <div>
+                                 <input type="hidden" name="Hit" id="hit" value="Hit" />
+                                <input type="submit" value=" Hit " class="btn btn-success btn-lg my-wide-button" />
+                               
+                                   </div>
+
+                                   
+                                 
+        }
+        </div>
+        </div>
+
+        
+
+      @*  @Html.Raw(@TempData.Peek("Hit").ToString());*@
+        @*@TempData.Peek("Sum")*@
+            
+   @*----------------------------------------------------------------------------HIT BUTTON---------------------------------------------------------------------------------*@
+
+          @using (Html.BeginForm("Playagain", "Home", FormMethod.Post))
+                {
+                    <div class="col-xs-12 col-sm-3 h3 my-vertical-center form-group">
+                        <input type="hidden" name="Playagain" id="Playagain" value="true" />
+                        <input type="submit" value="Playagain" class="btn btn-warning btn-lg my-wide-button" />
+                    </div>
+                }
+@*--------------------------------------------------------------------------Stand Button------------------------------------------------------------------------------------------*@
+      @*  @TempData.Peek("Stay")*@
+        
+}
+<div class="col-xs-12 col-sm-5 d-flex flex-row justify-content-end my-dealer-cards pr-5" id="my-dealer-cards">
+                    <div class="my-cards-container pr-3">
+                        @using (Html.BeginForm("HitButton", "Home", FormMethod.Post))
+        {
+                            <div>    <input type="hidden" name="Stand" id="Stand" value="Stand" />
+                                <input type="submit" value="Stand" class="btn btn-success btn-lg my-wide-button" />
+                                </div>
+                               
+        }     </div>
+                                        </div>
+                                                 </body>
+@*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*@
